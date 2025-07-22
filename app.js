@@ -30,7 +30,7 @@
   });
 
   slider.addEventListener("change", () => {
-    fetch("http://localhost:3000/update", {
+    fetch("/api/update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
