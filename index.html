@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Volume</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+  <style>
+    #qr-reader { width: 300px; margin: 20px auto; display: none; }
+    .caixa { text-align: center; display: none; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <button id="btn-scan">📷 Escanear QR Code</button>
+  <div id="qr-reader"></div>
+  <div class="caixa" id="caixa-template">
+    <h2>Caixa <span id="box-id"></span></h2>
+    <input type="range" id="volume-slider" min="0" max="200" value="0">
+    <div>Volume: <span id="volume-label">0</span></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
