@@ -1,1 +1,28 @@
+// api/health.js
+import oracledb from "oracledb";
+
+export default async function handler(_, res) {
+  let conn;
+  try {
+    conn = await oracledb.getConnection({
+      user:           process.env.DB_USER,
+      password:       process.env.DB_PASSWORD,
+      connectString:  process.env.DB_CONNECTION,
+    });
+    // opcional: buscar a versão do banco
+    const result = await conn.execute(`SELECT * FROM v$version`);
+    res.status(200).json({
+      status:  "OK",
+      version: result.rows[0][0]
+    });
+  } catch (err) {
+    console.error("Health check failed:", err);
+    res.status(500).json({
+      status:  "ERROR",
+      message: err.message
+    });
+  } finally {
+    if (conn) await conn.close();
+  }
+}
 
